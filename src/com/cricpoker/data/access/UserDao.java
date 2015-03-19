@@ -3,14 +3,11 @@ package com.cricpoker.data.access;
 import org.joda.time.DateTime;
 
 import com.cricpoker.data.objects.User;
-import com.cricpoker.util.DatabaseUtil;
 
-public class UserDao {
-	
-	private final DatabaseUtil dbUtil;
+public class UserDao extends CommonDao<User> {
 	
 	public UserDao() {
-		dbUtil = new DatabaseUtil();
+		super();
 	}
 	
 	public void createUser(DateTime lastLoggedInTime,
@@ -22,7 +19,7 @@ public class UserDao {
 		user.setFavTeamId(favTeamId);
 		user.setLastLoggedInTime(lastLoggedInTime);
 		user.setTokensLeft(tokensLeft);
-		dbUtil.insert(user);
+		new UserDao().insert(user);
 				
 	}
 

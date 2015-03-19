@@ -7,7 +7,7 @@ public class Test {
  public static void main(String[] args) {
    
   Test tst = new Test();
-  tst.addUser("Saranga", new DateTime(), 2000, 1);
+  tst.addUser("Ketki", new DateTime(), 2000, 1);
  }
  
  private void addUser(String displayName, DateTime lastLoggedIn, int tokensLeft, int favTeamId) {

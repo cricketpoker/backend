@@ -16,12 +16,18 @@ public class ScheduleParser {
 			int lineCount = 0;
 			String[] nextLine;
 			while ((nextLine = reader.readNext()) != null) {
-				if (lineCount == 0) {
+				lineCount++;
+				if (lineCount == 1) {
 					continue;
 				}
-				lineCount++;
-				System.out.println(nextLine[0] + nextLine[2] + nextLine[3]
-						+ nextLine[4] + "etc...");
+				
+				String summary = nextLine[0];
+				String startTime = nextLine[2];
+				String endTime = nextLine[3];
+				String venue = nextLine[4];
+				
+				System.out.println(summary + startTime + endTime + venue);
+				break;
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
