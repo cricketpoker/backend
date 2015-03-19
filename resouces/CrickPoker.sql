@@ -4,6 +4,7 @@ drop table if exists users;
 drop table if exists questions;
 drop table if exists user_answers;
 drop table if exists user_badges;
+drop table if exists player_types;
 drop table if exists players;
 drop table if exists teams;
 drop table if exists matches;
@@ -55,6 +56,12 @@ user_badge_id int not null auto_increment,
 user_id int not null,
 badge_resource_link longtext,
 PRIMARY KEY(user_badge_id)
+);
+
+create table if not exists player_types
+(
+id int not null auto_increment,
+type varchar(100)
 );
 
 create table if not exists players
