@@ -13,7 +13,9 @@ public class Test {
  private void addUser(String displayName, DateTime lastLoggedIn, int tokensLeft, int favTeamId) {
 	 
 	 UserDao userDao = new UserDao();
-	 userDao.createUser(lastLoggedIn, displayName, tokensLeft, favTeamId);
+	 //userDao.createUser(lastLoggedIn, displayName, tokensLeft, favTeamId);
+	 
+	 System.out.println(userDao.listUserBySingleCriteria("displayName", "Ketki%"));
  }
 
 }

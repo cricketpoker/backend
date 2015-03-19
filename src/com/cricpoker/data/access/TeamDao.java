@@ -1,11 +1,13 @@
 package com.cricpoker.data.access;
 
+import java.util.List;
+
 import com.cricpoker.data.objects.Team;
 
 public class TeamDao extends CommonDao<Team> {
 	
 	public TeamDao() {
-		super();
+		super(Team.class);
 	}
 	
 	public void createTeam(String teamName,
@@ -17,5 +19,12 @@ public class TeamDao extends CommonDao<Team> {
 		team.setTeamName(teamName);
 		new TeamDao().insert(team);	
 		
+	}
+	
+	public List<Team> listUserBySingleCriteria(String columnName, String columnValue) {
+		
+		List<Team> teams = new UserDao().queryByCriteria(columnName, columnValue);
+		
+		return teams;
 	}
 }

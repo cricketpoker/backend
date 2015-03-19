@@ -1,29 +1,21 @@
 package com.cricpoker.data.access;
 
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
+import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 import com.cricpoker.util.HibernateUtil;
 
 public class CommonDao<T> {
 	
-	private Class<T> clazz;
+	private Class<T> type;
 	
 	@SuppressWarnings("hiding")
-	public <T> CommonDao() {
-		
-		Type genericSuperclass = this.getClass().getGenericSuperclass();
-		
-		System.out.println(genericSuperclass);
-		if (genericSuperclass instanceof ParameterizedType) {
-			ParameterizedType pt = (ParameterizedType) genericSuperclass;
-			Type type = pt.getActualTypeArguments()[0];
-			System.out.println(type);
-			//clazz = (Class<T>) type;
-		}
+	public <T> CommonDao(Class clazz) {
+		type = clazz;
 	}
 
 	@SuppressWarnings("hiding")
@@ -45,4 +37,30 @@ public class CommonDao<T> {
 		}
 		
 	}
+	
+	public <T> List<T> queryByCriteria(String columnName, String columnValue) {
+		
+		Transaction transaction = null;
+		Session session = null;
+		List<T> results = null;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Criteria criteria = session.createCriteria(type);
+			criteria.add(Restrictions.like(columnName, columnValue));
+			
+			results = criteria.list();
+			
+			session.getTransaction().commit();
+		} catch(Exception e) {
+			if(transaction != null) {
+				transaction.rollback();
+			}
+		} finally {
+			session.close();
+		}
+		
+		return results;
+	}
+	
 }

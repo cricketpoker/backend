@@ -76,4 +76,16 @@ public class User {
 	public void setFavTeamId(int favTeamId) {
 		this.favTeamId = favTeamId;
 	}
+	
+	@Override
+	public String toString() {
+		StringBuffer userString = new StringBuffer();
+		userString.append("User Id " + userId);
+		userString.append(" Display Name " + displayName);
+		userString.append(" Last logged in time " + lastLoggedInTime);
+		userString.append(" Tokens left " + tokensLeft);
+		userString.append(" Fav team id " + favTeamId);
+		
+		return userString.toString();
+	}
 }
