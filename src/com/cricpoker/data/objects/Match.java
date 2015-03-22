@@ -1,6 +1,7 @@
 package com.cricpoker.data.objects;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,7 +29,7 @@ public class Match {
 	@Column(name="team_id1")
 	private int teamId1;
 	
-	@Column(name="team_id1")
+	@Column(name="team_id2")
 	private int teamId2;
 	
 	@Column(name="ground")
@@ -41,7 +42,7 @@ public class Match {
 	private int winningTeamId;
 	
 	@Column(name="match_date")
-	private Date matchDate;
+	private Timestamp matchDate;
 
 	public int getMatchId() {
 		return matchId;
@@ -96,7 +97,7 @@ public class Match {
 	}
 
 	public void setMatchDate(DateTime matchDate) {
-		this.matchDate = new Date(matchDate.getMillis());
+		this.matchDate = new Timestamp(matchDate.getMillis());
 	}
 
 }

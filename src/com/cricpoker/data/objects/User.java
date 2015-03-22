@@ -1,6 +1,7 @@
 package com.cricpoker.data.objects;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,7 +27,7 @@ public class User {
 	private int userId;
 	
 	@Column(name="last_logged_in_time")
-	private Date lastLoggedInTime;
+	private Timestamp lastLoggedInTime;
 	
 	@Column(name="display_name")
 	private String displayName;
@@ -50,7 +51,7 @@ public class User {
 	}
 	
 	public void setLastLoggedInTime(DateTime lastLoggedIn) {
-		this.lastLoggedInTime = new Date(lastLoggedIn.getMillis());
+		this.lastLoggedInTime = new Timestamp(lastLoggedIn.getMillis());
 	}
 	
 	public String getDisplayName() {
