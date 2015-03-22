@@ -23,14 +23,19 @@ public class UserDao extends CommonDao<User> {
 		user.setFavTeamId(favTeamId);
 		user.setLastLoggedInTime(lastLoggedInTime);
 		user.setTokensLeft(DEFAULT_TOKENS);
-		new UserDao().insert(user);
+		user = new UserDao().insert(user);
 				
 	}
 	
 	public List<User> listUserBySingleCriteria(String columnName, String columnValue) {
 		
-		List<User> users = new UserDao().queryByCriteria(columnName, columnValue);
+		List<User> users = new UserDao().queryByCriteria(columnName, columnValue);	
+		return users;
+	}
+	
+	public List<User> listAllUsers() {
 		
+		List<User> users = new UserDao().queryAll();
 		return users;
 	}
 

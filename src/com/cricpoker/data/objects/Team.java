@@ -61,4 +61,15 @@ public class Team {
 	public void setTeamAbbreviation(String teamAbbreviation) {
 		this.teamAbbreviation = teamAbbreviation;
 	}
+	
+	@Override
+	public String toString() {
+		StringBuffer teamString = new StringBuffer();
+		teamString.append("Team Id " + teamId);
+		teamString.append(" Team Name " + teamName);
+		teamString.append(" Home city " + homeCity);
+		teamString.append(" Team abbreviation " + teamAbbreviation);
+		
+		return teamString.toString();
+	}
 }

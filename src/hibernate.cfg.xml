@@ -6,9 +6,9 @@
  <session-factory>
   <!-- Database connection settings -->
   <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-  <property name="connection.url">jdbc:mysql://cricketpoker.cu0wcggssuth.us-west-2.rds.amazonaws.com/cric_poker</property>
-  <property name="connection.username">sa</property>
-  <property name="connection.password">cricpoker</property>
+  <property name="connection.url">jdbc:mysql://localhost/cric_poker</property>
+  <property name="connection.username">root</property>
+  <property name="connection.password"></property>
    
   <!-- JDBC connection pool (use the built-in) -->
   <property name="connection.pool_size">1</property>
@@ -33,6 +33,18 @@
 
 <!-- Mapping classes -->
 <mapping class="com.cricpoker.data.objects.User"/>
+<mapping class="com.cricpoker.data.objects.Team"/>
+<mapping class="com.cricpoker.data.objects.Answer"/>
+<mapping class="com.cricpoker.data.objects.Badge"/>
+<mapping class="com.cricpoker.data.objects.Challenge"/>
+<mapping class="com.cricpoker.data.objects.ChallengeEnrollment"/>
+<mapping class="com.cricpoker.data.objects.Group"/>
+<!--  <mapping class="com.cricpoker.data.objects.GroupEnrollment"/>
+<mapping class="com.cricpoker.data.objects.Match"/>
+<mapping class="com.cricpoker.data.objects.MatchScoreHistory"/>
+<mapping class="com.cricpoker.data.objects.Player"/>
+<mapping class="com.cricpoker.data.objects.Question"/>
+<mapping class="com.cricpoker.data.objects.QuestionType"/>-->
    
  </session-factory>
 </hibernate-configuration>

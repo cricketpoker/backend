@@ -19,7 +19,7 @@ public class CommonDao<T> {
 	}
 
 	@SuppressWarnings("hiding")
-	public <T> void insert(T object) {
+	public <T> T insert(T object) {
 		
 		Transaction transaction = null;
 		Session session = null;
@@ -28,13 +28,17 @@ public class CommonDao<T> {
 			transaction = session.beginTransaction();
 			session.save(object);
 			session.getTransaction().commit();
+			
 		} catch(Exception e) {
+			System.out.println(e);
 			if(transaction != null) {
 				transaction.rollback();
 			}
 		} finally {
 			session.close();
 		}
+		
+		return object;
 		
 	}
 	
@@ -50,6 +54,29 @@ public class CommonDao<T> {
 			criteria.add(Restrictions.like(columnName, columnValue));
 			
 			results = criteria.list();
+			
+			session.getTransaction().commit();
+		} catch(Exception e) {
+			System.out.println(e);
+			if(transaction != null) {
+				transaction.rollback();
+			}
+		} finally {
+			session.close();
+		}
+		
+		return results;
+	}
+	
+	public <T> List<T> queryAll() {
+		Transaction transaction = null;
+		Session session = null;
+		List<T> results = null;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			
+			results = session.createCriteria(type).list();
 			
 			session.getTransaction().commit();
 		} catch(Exception e) {
